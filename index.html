@@ -116,7 +116,7 @@
                 </a>
             </div>
             <div class="contact-item">
-        <a href="https://wa.me/549112" class="contact-link" target="_blank">
+        <a href="https://wa.me/5491127173774" class="contact-link" target="_blank">
             <i class="fab fa-whatsapp"></i>
         </a>
     </div>
@@ -138,7 +138,7 @@
                           de datos como palanca para la toma de decisiones basadas en información. Cuento con dominio de HTML, CSS y 
                           JavaScript; manejo de Git/GitHub, Figma; y experiencia en Node.js y SQL. Me caracterizo por mi fuerte 
                           orientación a resultados y mi compromiso con el aprendizaje continuo, buscando siempre aportar soluciones 
-                          tecnológicas de alto impacto social y valor tangible..</p>                   
+                          tecnológicas de alto impacto social y valor tangible.</p>                   
                            <div class="stats">
                         
                     </div>
@@ -262,67 +262,12 @@
                         <span class="skill-badge">Visualización</span>
                     </div>
                 </div>
+                <div class="certificates-link">
+        <a href="https://www.canva.com/design/DAGqTghy60o/8MfVp34nx0oJ1LUH0mPxCA/edit?utm_content=DAGqTghy60o&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" class="btn-certificates" target="_blank" >Ver Certificados</a>
+    </div>
             </div>
-
-            <div class="certifications">
-                <h3>Certificaciones Destacadas</h3>
-                <div class="certifications-container">
-                    <div class="certification-item">
-                        <div class="cert-header">
-                            <div class="cert-icon">⚛️</div>
-                            <div class="cert-title">React Development</div>
-                        </div>
-                        <div class="cert-provider">Meta - Coursera</div>
-                        <div class="cert-date">2024</div>
-                    </div>
-                    
-                    <div class="certification-item">
-                        <div class="cert-header">
-                            <div class="cert-icon">🎨</div>
-                            <div class="cert-title">UX/UI Design</div>
-                        </div>
-                        <div class="cert-provider">Google Design</div>
-                        <div class="cert-date">2024</div>
-                    </div>
-                    
-                    <div class="certification-item">
-                        <div class="cert-header">
-                            <div class="cert-icon">🌐</div>
-                            <div class="cert-title">Full Stack Development</div>
-                        </div>
-                        <div class="cert-provider">FreeCodeCamp</div>
-                        <div class="cert-date">2023</div>
-                    </div>
-                    
-                    <div class="certification-item">
-                        <div class="cert-header">
-                            <div class="cert-icon">📱</div>
-                            <div class="cert-title">React Native</div>
-                        </div>
-                        <div class="cert-provider">Udemy</div>
-                        <div class="cert-date">2024</div>
-                    </div>
-                    
-                    <div class="certification-item">
-                        <div class="cert-header">
-                            <div class="cert-icon">🐍</div>
-                            <div class="cert-title">Python Fundamentals</div>
-                        </div>
-                        <div class="cert-provider">Python Institute</div>
-                        <div class="cert-date">2023</div>
-                    </div>
-                    
-                    <div class="certification-item">
-                        <div class="cert-header">
-                            <div class="cert-icon">🔧</div>
-                            <div class="cert-title">Git & GitHub</div>
-                        </div>
-                        <div class="cert-provider">GitHub Learning</div>
-                        <div class="cert-date">2023</div>
-                    </div>
-                </div>
-            </div>
-
+ 
+                
             <div class="progress-section">
                 <h3 class="progress-title">Mi Progreso Académico</h3>
                 <div class="progress-stats">
@@ -383,6 +328,8 @@
                         <p>Pagina personal con diseño intuitivo y funcional</p>
                         <div class="project-tags">
                             <span class="tag">React Native</span>
+                            <span class="tag">Node.Js</span>
+                            <span class="tag">Vite</span>
                             <span class="tag">CSS3</span>
                             <span class="tag">HTML</span>
                             <span class="tag">UX/UI</span>
@@ -538,26 +485,31 @@
             <p>Cuéntame sobre tu proyecto y hagamos algo increíble</p>
         </div>
         <div class="contact-content">
-            <form class="contact-form">
-                <div class="form-row">
-                    <div class="form-group">
-                        <input type="text" placeholder="Tu Nombre" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" placeholder="Tu Email" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <input type="text" placeholder="¿Cuál es tu proyecto?" required>
-                </div>
-                <div class="form-group">
-                    <textarea placeholder="Cuéntame más detalles..." rows="6" required></textarea>
-                </div>
-                <div class="form-actions">
-                    <button type="submit" class="btn btn-primary">Enviar Propuesta</button>
-                    <p class="form-note">Te respondo en menos de 24 horas ⚡</p>
-                </div>
-            </form>
+            <form class="contact-form" id="form-contacto">
+  <div class="form-row">
+    <div class="form-group">
+      <input type="text" name="nombre" placeholder="Tu Nombre" required>
+    </div>
+    <div class="form-group">
+      <input type="email" name="email" placeholder="Tu Email" required>
+    </div>
+  </div>
+  <div class="form-group">
+    <input type="text" name="proyecto" placeholder="¿Cuál es tu proyecto?" required>
+  </div>
+  <div class="form-group">
+    <textarea name="mensaje" placeholder="Cuéntame más detalles..." rows="6" required></textarea>
+  </div>
+  <div class="form-actions">
+    <button type="submit" class="btn btn-primary">Enviar Propuesta</button>
+    <div id="spinner" style="display: none;">
+  <div class="spinner-circle"></div>
+</div>
+
+    <p class="form-note">Te respondo en menos de 24 horas ⚡</p>
+  </div>
+</form>
+
         </div>
     </div>
 </section>
@@ -570,7 +522,7 @@
                 <div class="social-links">
                     <a href="https://www.linkedin.com/in/mariana-maldonado-3769a9273/"><i class="fab fa-linkedin"></i></a>
                     <a href="https://github.com/MarianaMaldonado2190"><i class="fab fa-github"></i></a>
-                     <a href="https://wa.me/549112" class="contact-link" target="_blank">
+                     <a href="https://wa.me/5491127173774" class="contact-link" target="_blank">
                         <i class="fab fa-whatsapp"></i></a>
                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=marianamaldonado2190@gmail.com&su=Contacto%20desde%20portafolio" class="contact-link" target="_blank"><i class="fas fa-envelope"></i></a>
                     

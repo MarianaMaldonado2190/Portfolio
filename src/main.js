@@ -324,63 +324,88 @@ document.querySelectorAll('.btn').forEach(button => {
         });
     });
     
-    // ===== COPIAR EMAIL AL CLIPBOARD =====
-    document.querySelectorAll('a[href^="mailto:"]').forEach(emailLink => {
-        emailLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            const email = this.getAttribute('href').replace('mailto:', '');
-            navigator.clipboard.writeText(email).then(() => {
-                showNotification('Email copiado al portapapeles', 'success');
-            }).catch(() => {
-                // Fallback: abrir cliente de email
-                window.location.href = this.getAttribute('href');
-            });
-        });
-    });
+    
     
 });
 
-// ===== FUNCIONES AUXILIARES =====
-
-// Validar email
-function isValidEmail(email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
+// === FUNCIÓN PARA MOSTRAR SPINNER ===
+function mostrarSpinner() {
+  const spinner = document.getElementById("spinner");
+  if (spinner) spinner.style.display = "block";
 }
 
-// Mostrar notificaciones
+function ocultarSpinner() {
+  const spinner = document.getElementById("spinner");
+  if (spinner) spinner.style.display = "none";
+}
+
+// === FUNCIÓN PARA MOSTRAR NOTIFICACIONES ===
 function showNotification(message, type = 'info') {
-    const notification = document.createElement('div');
-    notification.className = `notification ${type}`;
-    notification.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        padding: 1rem 1.5rem;
-        background: ${type === 'success' ? '#28a745' : type === 'error' ? '#dc3545' : '#17a2b8'};
-        color: white;
-        border-radius: 8px;
-        z-index: 10000;
-        transform: translateX(100%);
-        transition: transform 0.3s ease;
-        max-width: 300px;
-        word-wrap: break-word;
-    `;
-    notification.textContent = message;
-    
-    document.body.appendChild(notification);
-    
+  const notification = document.createElement('div');
+  notification.className = `notification ${type}`;
+  notification.style.cssText = `
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 1rem 1.5rem;
+      background: ${type === 'success' ? '#28a745' : type === 'error' ? '#dc3545' : '#17a2b8'};
+      color: white;
+      border-radius: 8px;
+      z-index: 10000;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+      max-width: 300px;
+      word-wrap: break-word;
+  `;
+  notification.textContent = message;
+
+  document.body.appendChild(notification);
+
+  setTimeout(() => {
+    notification.style.transform = 'translateX(0)';
+  }, 100);
+
+  setTimeout(() => {
+    notification.style.transform = 'translateX(100%)';
     setTimeout(() => {
-        notification.style.transform = 'translateX(0)';
-    }, 100);
-    
-    setTimeout(() => {
-        notification.style.transform = 'translateX(100%)';
-        setTimeout(() => {
-            notification.remove();
-        }, 300);
-    }, 4000);
+      notification.remove();
+    }, 300);
+  }, 4000);
 }
+
+// === ENVÍO DEL FORMULARIO ===
+document.querySelector(".contact-form").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const nombre = document.querySelector('input[placeholder="Tu Nombre"]').value;
+  const email = document.querySelector('input[placeholder="Tu Email"]').value;
+  const proyecto = document.querySelector('input[placeholder="¿Cuál es tu proyecto?"]').value;
+  const mensaje = document.querySelector("textarea").value;
+
+  mostrarSpinner();
+
+  fetch("http://localhost:3000/enviar-formulario", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ nombre, email, proyecto, mensaje }),
+  })
+    .then((res) => {
+      if (!res.ok) throw new Error("Error al enviar");
+      return res.text();
+    })
+    .then((data) => {
+      showNotification("Mensaje enviado con éxito 🎉", "success");
+      document.querySelector(".contact-form").reset();
+    })
+    .catch((err) => {
+      showNotification("Hubo un error al enviar 😢", "error");
+      console.error(err);
+    })
+    .finally(() => {
+      ocultarSpinner();
+    });
+});
+
 
 // Agregar estilos CSS dinámicos
 const dynamicStyles = document.createElement('style');
