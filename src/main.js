@@ -128,7 +128,15 @@ document.addEventListener('DOMContentLoaded', function() {
             submitBtn.disabled = false;
         }, 2000);
     });
-    
+    // Selecciona todos los botones de proyectos
+document.querySelectorAll('.btn').forEach(button => {
+    button.addEventListener('click', function() {
+        const url = this.getAttribute('data-url');
+        if (url) {
+            window.open(url, '_blank');
+        }
+    });
+});
     // ===== EFECTOS DE HOVER EN PROYECTOS =====
     document.querySelectorAll('.project-card').forEach(card => {
         card.addEventListener('mouseenter', function() {
