@@ -128,15 +128,44 @@ document.addEventListener('DOMContentLoaded', function() {
             submitBtn.disabled = false;
         }, 2000);
     });
-    // Selecciona todos los botones de proyectos
-document.querySelectorAll('.btn').forEach(button => {
-    button.addEventListener('click', function() {
+// MANEJO DE BOTONES CON ENLACES Y DESCARGAS
+document.querySelectorAll('.btn[data-url], [data-url]').forEach(button => {
+    button.addEventListener('click', function(e) {
+        e.preventDefault();
         const url = this.getAttribute('data-url');
+        
         if (url) {
-            window.open(url, '_blank');
+            console.log('URL encontrada:', url); // Para debugging
+            
+            // Verificar si es un PDF o archivo para descargar
+            if (url.includes('.pdf') || url.includes('download') || url.includes('attachment')) {
+                // Crear enlace temporal para descarga
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = this.textContent.includes('CV') ? 'Cv-Mariana Maldonado IT 2025.pdf' : '';
+                link.style.display = 'none';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                showNotification('Descarga iniciada', 'success');
+            } else {
+                // Para otros enlaces, abrir en nueva pestaña
+                window.open(url, '_blank');
+            }
+        } else {
+            console.log('No se encontró URL en data-url');
         }
     });
 });
+// DEBUGGING - Agrega esto temporalmente para ver qué pasa
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('Botones encontrados:', document.querySelectorAll('[data-url]').length);
+    document.querySelectorAll('[data-url]').forEach((btn, index) => {
+        console.log(`Botón ${index}:`, btn.getAttribute('data-url'));
+    });
+});
+
     // ===== EFECTOS DE HOVER EN PROYECTOS =====
     document.querySelectorAll('.project-card').forEach(card => {
         card.addEventListener('mouseenter', function() {

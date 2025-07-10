@@ -654,11 +654,6 @@ section {
     top: 0;
     left: 0;
     right: 0;
-    bottom: 0;
-    background: 
-        radial-gradient(circle at 15% 25%, rgba(102, 126, 234, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 85% 75%, rgba(118, 75, 162, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 50% 50%, rgba(212, 190, 240, 0.08) 0%, transparent 50%);
     pointer-events: none;
 }
 
